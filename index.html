@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Folks Cafe — Empanadas & Breakfast, Wilmington NC</title>
+  <meta name="description" content="Folks Cafe in Wilmington, NC — handmade empanadas, hearty breakfast, and brunch. Rated 4.9 stars. Open Tue–Sat. Dogs welcome.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --espresso:   #2C1810;
+      --terracotta: #C4622D;
+      --cream:      #FFF8F0;
+      --sage:       #4A6741;
+      --gold:       #C8941A;
+      --light-tan:  #F5EDE0;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #fff;
+      color: #333;
+    }
+
+    h1, h2, h3, h4, h5 {
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      background: var(--espresso);
+      padding: 1rem 2rem;
+    }
+    .navbar-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--cream) !important;
+      letter-spacing: .03em;
+    }
+    .navbar-brand span {
+      color: var(--terracotta);
+    }
+    .nav-link {
+      color: rgba(255,248,240,.8) !important;
+      font-weight: 400;
+      letter-spacing: .04em;
+      font-size: .93rem;
+      transition: color .2s;
+    }
+    .nav-link:hover { color: var(--terracotta) !important; }
+    .nav-link.active { color: var(--terracotta) !important; }
+    .navbar-toggler { border-color: rgba(255,248,240,.3); }
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,248,240,.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--espresso);
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('images/exterior.png');
+      background-size: cover;
+      background-position: center;
+      opacity: .45;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+    .hero-label {
+      display: inline-block;
+      background: var(--terracotta);
+      color: #fff;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: .35rem .9rem;
+      border-radius: 2px;
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 {
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      color: var(--cream);
+      line-height: 1.1;
+      font-weight: 700;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .hero .lead {
+      color: rgba(255,248,240,.75);
+      font-size: 1.2rem;
+      font-weight: 300;
+      max-width: 520px;
+    }
+    .stars-row {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      margin-top: 1.4rem;
+    }
+    .stars-row .stars { color: var(--gold); font-size: 1.2rem; letter-spacing: .05em; }
+    .stars-row .rating-text { color: rgba(255,248,240,.7); font-size: .9rem; }
+    .hero .btn-primary {
+      background: var(--terracotta);
+      border-color: var(--terracotta);
+      color: #fff;
+      padding: .75rem 2rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      font-size: .88rem;
+      border-radius: 3px;
+      transition: background .2s, border-color .2s;
+    }
+    .hero .btn-primary:hover { background: #a84f24; border-color: #a84f24; }
+    .hero .btn-outline-light {
+      color: var(--cream);
+      border-color: rgba(255,248,240,.4);
+      padding: .75rem 2rem;
+      font-size: .88rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      font-weight: 700;
+      border-radius: 3px;
+      transition: all .2s;
+    }
+    .hero .btn-outline-light:hover {
+      background: rgba(255,248,240,.12);
+      border-color: var(--cream);
+    }
+    .hours-badge {
+      background: rgba(255,248,240,.1);
+      border: 1px solid rgba(255,248,240,.2);
+      border-radius: 8px;
+      padding: 1.4rem 1.8rem;
+      color: var(--cream);
+      backdrop-filter: blur(6px);
+    }
+    .hours-badge h6 {
+      font-family: 'Lato', sans-serif;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: .8rem;
+    }
+    .hours-badge .hours-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 2rem;
+      font-size: .9rem;
+      margin-bottom: .35rem;
+      color: rgba(255,248,240,.85);
+    }
+    .hours-badge .hours-row strong { color: var(--cream); }
+
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      background: var(--light-tan);
+      border-top: 3px solid var(--terracotta);
+      padding: 1.4rem 0;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: .65rem;
+      font-size: .88rem;
+      color: var(--espresso);
+      font-weight: 700;
+      letter-spacing: .04em;
+    }
+    .trust-item .icon {
+      font-size: 1.3rem;
+    }
+    .trust-divider {
+      width: 1px;
+      height: 32px;
+      background: rgba(44,24,16,.15);
+    }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 5rem 0; }
+
+    .section-label {
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      display: block;
+      margin-bottom: .6rem;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 700;
+      color: var(--espresso);
+      margin-bottom: 1rem;
+    }
+    .section-subtitle {
+      color: #666;
+      font-size: 1.05rem;
+      font-weight: 300;
+      max-width: 560px;
+    }
+
+    /* ── MENU SECTION ── */
+    .menu-section { background: var(--cream); }
+    .dish-card {
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px rgba(44,24,16,.08);
+      transition: transform .25s, box-shadow .25s;
+      height: 100%;
+    }
+    .dish-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(44,24,16,.14);
+    }
+    .dish-card-img {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+    }
+    .dish-card-img-placeholder {
+      width: 100%;
+      height: 210px;
+      background: var(--light-tan);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+    }
+    .dish-card-body { padding: 1.4rem; }
+    .dish-card-body h4 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--espresso);
+      margin-bottom: .4rem;
+    }
+    .dish-card-body p {
+      font-size: .9rem;
+      color: #777;
+      margin: 0;
+    }
+    .dish-tag {
+      display: inline-block;
+      background: var(--light-tan);
+      color: var(--terracotta);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: .2rem .6rem;
+      border-radius: 2px;
+      margin-bottom: .6rem;
+    }
+
+    /* ── ABOUT ── */
+    .about-section { background: #fff; }
+    .about-img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 4px 28px rgba(44,24,16,.12);
+    }
+    .about-img-placeholder {
+      width: 100%;
+      height: 480px;
+      background: var(--light-tan);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      color: rgba(44,24,16,.2);
+    }
+    .about-bullet {
+      display: flex;
+      align-items: flex-start;
+      gap: .8rem;
+      margin-bottom: .9rem;
+    }
+    .about-bullet .dot {
+      width: 8px;
+      height: 8px;
+      background: var(--terracotta);
+      border-radius: 50%;
+      margin-top: .45rem;
+      flex-shrink: 0;
+    }
+    .about-bullet p { margin: 0; color: #555; font-size: .98rem; }
+
+    /* ── REVIEWS ── */
+    .reviews-section { background: var(--espresso); }
+    .reviews-section .section-title { color: var(--cream); }
+    .reviews-section .section-label { color: var(--gold); }
+    .review-card {
+      background: rgba(255,248,240,.07);
+      border: 1px solid rgba(255,248,240,.12);
+      border-radius: 10px;
+      padding: 1.8rem;
+      height: 100%;
+    }
+    .review-card .stars { color: var(--gold); font-size: 1rem; margin-bottom: .8rem; }
+    .review-card p {
+      color: rgba(255,248,240,.8);
+      font-size: .95rem;
+      font-style: italic;
+      line-height: 1.7;
+    }
+    .reviewer-name {
+      color: var(--cream);
+      font-weight: 700;
+      font-size: .88rem;
+      margin-top: 1rem;
+    }
+    .yelp-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: #D32323;
+      color: #fff;
+      font-size: .8rem;
+      font-weight: 700;
+      padding: .4rem .9rem;
+      border-radius: 4px;
+    }
+
+    /* ── LOCATION ── */
+    .photos-section { background: var(--cream); }
+    .photos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 12px;
+    }
+    .photo-item img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      border-radius: 10px;
+      display: block;
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+    .photo-item img:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 24px rgba(44,24,16,.18);
+    }
+
+    .location-section { background: var(--light-tan); }
+    .map-embed {
+      width: 100%;
+      height: 380px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(44,24,16,.1);
+    }
+    .map-embed iframe { width: 100%; height: 100%; border: 0; }
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.4rem;
+    }
+    .info-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--terracotta);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .info-row h6 {
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: .2rem;
+    }
+    .info-row p, .info-row a {
+      margin: 0;
+      font-size: 1rem;
+      color: var(--espresso);
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .info-row a:hover { color: var(--terracotta); }
+    .hours-table { width: 100%; }
+    .hours-table tr td { padding: .3rem 0; font-size: .94rem; color: #444; }
+    .hours-table tr td:first-child { color: var(--espresso); font-weight: 700; width: 90px; }
+    .hours-table tr.closed td { color: #bbb; }
+    .hours-table tr.today td { color: var(--terracotta); font-weight: 700; }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: var(--terracotta);
+      padding: 4rem 0;
+    }
+    .cta-section h2 { color: #fff; font-size: clamp(1.8rem, 3vw, 2.6rem); }
+    .cta-section p { color: rgba(255,255,255,.8); font-size: 1.05rem; }
+    .cta-section .btn-light {
+      background: var(--cream);
+      border-color: var(--cream);
+      color: var(--terracotta);
+      font-weight: 700;
+      padding: .75rem 2rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      font-size: .88rem;
+      border-radius: 3px;
+    }
+    .cta-section .btn-light:hover { background: #fff; }
+    .cta-section .btn-outline-light {
+      border-color: rgba(255,255,255,.5);
+      color: #fff;
+      font-weight: 700;
+      padding: .75rem 2rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      font-size: .88rem;
+      border-radius: 3px;
+    }
+    .cta-section .btn-outline-light:hover { background: rgba(255,255,255,.15); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--espresso);
+      color: rgba(255,248,240,.6);
+      padding: 3rem 0 2rem;
+      font-size: .88rem;
+    }
+    footer .footer-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--cream);
+      font-weight: 700;
+      margin-bottom: .4rem;
+    }
+    footer .footer-brand span { color: var(--terracotta); }
+    footer a { color: rgba(255,248,240,.6); text-decoration: none; }
+    footer a:hover { color: var(--terracotta); }
+    footer .footer-divider {
+      border-color: rgba(255,248,240,.1);
+      margin: 2rem 0 1.5rem;
+    }
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background: rgba(255,248,240,.08);
+      border-radius: 50%;
+      color: rgba(255,248,240,.7) !important;
+      font-size: .9rem;
+      margin-right: .4rem;
+      transition: background .2s;
+    }
+    .social-link:hover { background: var(--terracotta) !important; color: #fff !important; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero { min-height: 100vh; padding: 5rem 0 3rem; }
+      .hours-badge { margin-top: 2rem; }
+      section { padding: 3.5rem 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <img src="images/logo.png" alt="Folks Cafe" style="height:42px;width:auto;vertical-align:middle;margin-right:.5rem;">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto gap-lg-2">
+        <li class="nav-item"><a class="nav-link" href="#menu">Menu</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#reviews">Reviews</a></li>
+        <li class="nav-item"><a class="nav-link" href="#photos">Photos</a></li>
+        <li class="nav-item"><a class="nav-link" href="#location">Location</a></li>
+        <li class="nav-item ms-lg-3">
+          <a class="btn btn-sm" href="tel:9103621448" style="background:var(--terracotta);color:#fff;padding:.45rem 1.1rem;border-radius:3px;font-weight:700;letter-spacing:.05em;">(910) 362-1448</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="padding:0;">
+  <div class="hero-bg"></div>
+  <div class="container hero-content py-5">
+    <div class="row align-items-center g-5 py-5">
+
+      <div class="col-lg-6">
+        <span class="hero-label">Wilmington, NC · Since Day One</span>
+        <h1>
+          Breakfast &amp; Brunch<br>
+          Done <em>Right.</em>
+        </h1>
+        <p class="lead mt-3">
+          Handmade empanadas, hearty omelettes, and morning favorites
+          served with love at 1201 Princess Street.
+        </p>
+        <div class="stars-row">
+          <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span class="rating-text">4.9 stars · 92 Yelp reviews</span>
+        </div>
+        <div class="mt-4 d-flex flex-wrap gap-3">
+          <a href="#menu" class="btn btn-primary">See Our Menu</a>
+          <a href="#location" class="btn btn-outline-light">Find Us</a>
+        </div>
+      </div>
+
+      <div class="col-lg-5 offset-lg-1">
+        <div class="hours-badge">
+          <h6>Hours</h6>
+          <div class="hours-row"><strong>Tue – Fri</strong><span>7:45 AM – 1:30 PM</span></div>
+          <div class="hours-row"><strong>Saturday</strong><span>8:30 AM – 1:30 PM</span></div>
+          <div class="hours-row" style="color:rgba(255,248,240,.4)"><strong>Sun &amp; Mon</strong><span>Closed</span></div>
+          <hr style="border-color:rgba(255,248,240,.15);margin:1rem 0;">
+          <div style="display:flex;align-items:center;gap:.5rem;color:rgba(255,248,240,.6);font-size:.85rem;">
+            <span>📍</span>
+            <span>1201 Princess St, Wilmington NC 28401</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center gap-4">
+      <div class="trust-item"><span class="icon">⭐</span> 4.9 Stars on Yelp</div>
+      <div class="trust-divider d-none d-md-block"></div>
+      <div class="trust-item"><span class="icon">🫔</span> Handmade Empanadas</div>
+      <div class="trust-divider d-none d-md-block"></div>
+      <div class="trust-item"><span class="icon">🐾</span> Dogs Welcome</div>
+      <div class="trust-divider d-none d-md-block"></div>
+      <div class="trust-item"><span class="icon">🌿</span> Outdoor Seating</div>
+      <div class="trust-divider d-none d-md-block"></div>
+      <div class="trust-item"><span class="icon">☀️</span> Breakfast &amp; Brunch</div>
+    </div>
+  </div>
+</div>
+
+<!-- MENU -->
+<section class="menu-section" id="menu">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-lg-6">
+        <span class="section-label">Popular Dishes</span>
+        <h2 class="section-title">Made Fresh Every Morning</h2>
+        <p class="section-subtitle">
+          From our signature beef empanadas to loaded omelettes — everything is
+          made from scratch, served fast, and worth coming back for.
+        </p>
+      </div>
+      <div class="col-lg-6 d-flex align-items-end justify-content-lg-end">
+        <a href="https://folkscafe.com" target="_blank" class="btn btn-outline-secondary">
+          Full Menu at folkscafe.com &rarr;
+        </a>
+      </div>
+    </div>
+    <div class="row g-4">
+
+      <div class="col-sm-6 col-lg-3">
+        <div class="dish-card">
+          <div class="dish-card-img-placeholder">🍳</div>
+          <div class="dish-card-body">
+            <span class="dish-tag">Breakfast</span>
+            <h4>Meat Lover Omelette</h4>
+            <p>Packed with your favorite proteins, folded to perfection. A morning classic.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-3">
+        <div class="dish-card">
+          <div class="dish-card-img-placeholder">🥚</div>
+          <div class="dish-card-body">
+            <span class="dish-tag">Vegetarian</span>
+            <h4>Veggie Omelet</h4>
+            <p>Fresh vegetables, herbs, and cheese in a light, fluffy egg wrap.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-3">
+        <div class="dish-card">
+          <div class="dish-card-img-placeholder">🫔</div>
+          <div class="dish-card-body">
+            <span class="dish-tag">Signature</span>
+            <h4>Beef Empanada</h4>
+            <p>Our most-loved item. Crispy, golden, handmade — with a savory beef filling.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-3">
+        <div class="dish-card">
+          <div class="dish-card-img-placeholder">🥗</div>
+          <div class="dish-card-body">
+            <span class="dish-tag">Salads</span>
+            <h4>The Wedge</h4>
+            <p>Crisp iceberg, bold dressing, and all the right toppings. Simple and satisfying.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="container">
+    <div class="row align-items-center g-5">
+
+      <div class="col-lg-5">
+        <img src="images/exterior.png" class="about-img" alt="Folks Cafe exterior">
+      </div>
+
+      <div class="col-lg-6 offset-lg-1">
+        <span class="section-label">Our Story</span>
+        <h2 class="section-title">A Neighborhood Cafe<br>with a Latin Twist</h2>
+        <p style="color:#555; font-size:1.05rem; font-weight:300; line-height:1.75; margin-bottom:1.4rem;">
+          Tucked into a charming brick corner on Princess Street, Folks Cafe has become
+          one of Wilmington's most beloved morning spots. We're known for our handcrafted
+          empanadas alongside classic American breakfast — a combo that keeps our regulars
+          coming back every week.
+        </p>
+        <div class="about-bullet">
+          <div class="dot"></div>
+          <p>Everything made fresh daily — no shortcuts, no shortcuts, no shortcuts.</p>
+        </div>
+        <div class="about-bullet">
+          <div class="dot"></div>
+          <p>Dog-friendly patio so your whole family can join the morning ritual.</p>
+        </div>
+        <div class="about-bullet">
+          <div class="dot"></div>
+          <p>A cozy, welcoming space beloved by locals, students, and visitors alike.</p>
+        </div>
+        <div class="about-bullet">
+          <div class="dot"></div>
+          <p>Rated 4.9 stars on Yelp — 92 reviews and counting.</p>
+        </div>
+        <a href="#location" class="btn mt-3" style="background:var(--espresso);color:var(--cream);padding:.7rem 1.8rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;font-size:.86rem;border-radius:3px;">
+          Get Directions
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews-section" id="reviews">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="section-label">★ 4.9 on Yelp</span>
+      <h2 class="section-title">What Wilmington is Saying</h2>
+      <div class="mt-3">
+        <a href="https://www.yelp.com" target="_blank" class="yelp-badge" style="text-decoration:none;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M21.111 18.226c-.141.977-2.136 3.657-3.044 3.957-.31.1-.621.062-.857-.13-.142-.12-.296-.32-1.8-2.91l-.738-1.304c-.173-.302-.16-.68.033-.988.189-.3.51-.467.851-.436l.024.003c.164.02.318.09.44.198l.003.003c.254.218.426.535.426.535.492.91.887 1.56 1.018 1.59.14.034.413-.33.557-.674.13-.322.14-.652.044-.97-.088-.295-.243-.576-.453-.817-.46-.52-.999-.918-1.572-1.165-.55-.24-1.16-.355-1.785-.334-.608.02-1.2.175-1.71.447-.507.27-.943.674-1.257 1.175-.33.526-.49 1.137-.459 1.76.032.63.24 1.24.607 1.756.378.532.9.934 1.503 1.158.564.21 1.175.263 1.767.155a4.39 4.39 0 0 0 1.584-.641c.472-.315.845-.74 1.09-1.225.244-.486.337-1.025.269-1.553zm-9.867-4.065c-.148-.98-1.078-1.62-2.078-1.453l-7.86 1.308c-.999.166-1.656 1.117-1.427 2.097.5 2.176 2.3 3.743 4.38 3.743.485 0 .975-.085 1.455-.27l6.98-2.625c.91-.343 1.45-1.316 1.3-2.296l-.75.496zm-3.038-8.16L11.2.844c-.435-.927-1.585-1.296-2.508-.806-.94.497-1.277 1.638-.773 2.577l3.882 7.41c.497.943 1.652 1.307 2.583.806.924-.496 1.25-1.644.752-2.583l-3.88.733zm9.36 1.455c.27-.03.543-.01.81.06l2.127.59c1.013.28 1.565 1.343 1.228 2.35-.352 1.042-1.43 1.608-2.43 1.27l-2.13-.584c-.99-.27-1.55-1.32-1.25-2.31.25-.81 1.01-1.32 1.82-1.38l-.175.004zM7.648 2.88c.9-.503 2.05-.167 2.538.77l1.43 2.697-3.48.58-1.38-2.62c-.49-.94-.13-2.09.81-2.59l.082.163z"/></svg>
+          92 Reviews · 4.9 Stars
+        </a>
+      </div>
+    </div>
+    <div class="row g-4">
+
+      <div class="col-md-4">
+        <div class="review-card">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p>"Absolutely the best breakfast spot in Wilmington. The empanadas are
+          insanely good — crispy outside, perfectly seasoned inside. We come every
+          Saturday without fail."</p>
+          <div class="reviewer-name">— Sarah M., Wilmington NC</div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="review-card">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p>"Such a hidden gem. The Meat Lover Omelette is massive and delicious.
+          The staff is warm and friendly, the vibe is perfect. This place deserves
+          every one of those five stars."</p>
+          <div class="reviewer-name">— James K., Raleigh NC</div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="review-card">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p>"I don't usually write reviews but Folks Cafe earned one. Brought my
+          dog, sat outside, had an empanada and coffee — honestly one of my favorite
+          mornings in this city."</p>
+          <div class="reviewer-name">— Rachel T., Wilmington NC</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PHOTOS -->
+<section class="photos-section" id="photos">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="section-label">Google Photos</span>
+      <h2 class="section-title">A Look Inside</h2>
+      <p class="section-subtitle">Shots from our guests and the team</p>
+    </div>
+    <div class="photos-grid">
+      <div class="photo-item"><img src="https://lh3.googleusercontent.com/place-photos/AJRVUZMn7A3d6Z3knwn6ndyK_VOzPSX5C1gEMCQVCN9ckNDy0P7Vc_AVtHP3bPk2xqhImuAczXB609fD8hhpySCX_HX3IbWvBNLphzrqtuDFwukGJ1vd0E-THkgmpquA5OYPHibi_18ldSoxVTVE=s4800-w800" alt="Folks Café" loading="lazy"></div>
+      <div class="photo-item"><img src="https://lh3.googleusercontent.com/place-photos/AJRVUZNoldA2tXWupJHlaGZDEepnHjxMwylMzbUvRno_GHeeVKoiBFEESRPyr6Ua_VgvJc2QrnAxJvr9c1flqPMLsiF3o2VkRIEJz8i3MV-dZp72HJ3im2UUO2jNwv1KQZwa4cafJWGWeGmk8FMnpjPmcvLHsg=s4800-w800" alt="Folks Café" loading="lazy"></div>
+      <div class="photo-item"><img src="https://lh3.googleusercontent.com/place-photos/AJRVUZMtYuPCkc4iSJSyEWvG3HLM60c-5cL3mC8UWtkf4qd9rvNTG2t-EepY8jlLuTzG3jEBUJArUZenElxVh8c5PaQ0i41lXU49WyEiVRSSCCc24dNf0bSFUCr1V1Cewe_JZGAWgc6FwR-BaBDdz-g=s4800-w800" alt="Folks Café" loading="lazy"></div>
+      <div class="photo-item"><img src="https://lh3.googleusercontent.com/place-photos/AJRVUZOBHhxeV0Zvi8EwCtor-me2OJ9NMw2Zejm1TlULQ_XIJtQXt2sRjg6ZI7wbLpdZp31RMvYzpLLf4sbYB8HdpDIALw_6o7U2XyymEtYPwEOnlfhWEYFbKNOKfhxESmfk0H8CAIdw5JKk6xx56jBhxaMn=s4800-w800" alt="Folks Café" loading="lazy"></div>
+      <div class="photo-item"><img src="https://lh3.googleusercontent.com/place-photos/AJRVUZMlswnFxjZ5gCH8w05moYC2SUdnr6HmQs7vs5zUkFJPxcXz68NuvZArCJmJj_DAYb-JO9GY60spc6iAz5OS3VklhvXi5ATC-wG1SaeNchZGRq_2m6Bn3Gv8Lvw-VO465xESovmSwasUg0Na=s4800-w800" alt="Folks Café" loading="lazy"></div>
+      <div class="photo-item"><img src="https://lh3.googleusercontent.com/place-photos/AJRVUZPOFobAGnWAxouh_dc4VjvrCMkRvlR2lEbes142aFF-TovaBWwgbJNoYf3JekQePzMqpU-w2tNDZrDMYqYPMB3aX713A5qH_XSdnyoh9RBYlmEGI4r-SUZRJJw6NugYFsXz0y1XFiBfVnGevo9PlH8H2Q=s4800-w800" alt="Folks Café" loading="lazy"></div>
+      <div class="photo-item"><img src="https://lh3.googleusercontent.com/place-photos/AJRVUZOQeh0eqqv16IjJrBlyk7aQy3Pr__Q-zaFnE-Eo-sjRoumZJeDd7sfO4e5kdn8yf5yoJwREUQom8LEpd1vJ82A0ZwDQoHCUWB5K1WtO4Y802sbK9I5OtKPASS5eLnb4q13M8dy88vktdzl8PrTtljHPcw=s4800-w800" alt="Folks Café" loading="lazy"></div>
+      <div class="photo-item"><img src="https://lh3.googleusercontent.com/place-photos/AJRVUZNRoNuxqMDgwS28oTw1wD_T7-4L_pozzK-rvJVawNFQH1PrGCzHSN4INzd64qVZ9Sf1JbcGi2pB59WrTaNkwsr0wb07azH5boM_IcrC3EmSM9cHQ8N57jnFGdk99RY2kIJvghzuVo5crVOh9qhCga7AZw=s4800-w800" alt="Folks Café" loading="lazy"></div>
+      <div class="photo-item"><img src="https://lh3.googleusercontent.com/place-photos/AJRVUZP7kXHKgD3eixh5r0uhIhKk1xJz8093wALdJ0kPQD2HEXa5QWaCMT9NctmO0xV_TPvN9i582GmEJZrOaXCsLS9jsDJh5JKs00MURjap4laMzNdTPyn8-0O03HuxfO3gccYXUVu7A3h8fZ5FNw=s4800-w800" alt="Folks Café" loading="lazy"></div>
+      <div class="photo-item"><img src="https://lh3.googleusercontent.com/place-photos/AJRVUZNhXTXEHqnxq62EomMRDbViCZArFsxw0uNIuZgcDUCdkYwV3WxGwYbWnQad5JcsVIVirhpnS21m1lxbnjm4hZm47IyzbVLN8M7wn1OFQlH7YzO8n5FpxMKnRhKgWG0DzMTc9RufX4g6HvT463JFzpzkcQ=s4800-w800" alt="Folks Café" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION & HOURS -->
+<section class="location-section" id="location">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="section-label">Find Us</span>
+      <h2 class="section-title">Location &amp; Hours</h2>
+    </div>
+    <div class="row g-5 align-items-start">
+
+      <div class="col-lg-5">
+        <div class="info-row">
+          <div class="info-icon">📍</div>
+          <div>
+            <h6>Address</h6>
+            <p>1201 Princess St</p>
+            <p style="font-weight:400;color:#555;">Wilmington, NC 28401</p>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">📞</div>
+          <div>
+            <h6>Phone</h6>
+            <a href="tel:9103621448">(910) 362-1448</a>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">🌐</div>
+          <div>
+            <h6>Website</h6>
+            <a href="https://folkscafe.com" target="_blank">folkscafe.com</a>
+          </div>
+        </div>
+
+        <div style="background:#fff;border-radius:10px;padding:1.6rem;box-shadow:0 2px 16px rgba(44,24,16,.07);margin-top:1rem;">
+          <h6 style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#999;margin-bottom:1rem;">Hours of Operation</h6>
+          <table class="hours-table">
+            <tr class="closed"><td>Monday</td><td>Closed</td></tr>
+            <tr><td>Tuesday</td><td>7:45 AM – 1:30 PM</td></tr>
+            <tr><td>Wednesday</td><td>7:45 AM – 1:30 PM</td></tr>
+            <tr><td>Thursday</td><td>7:45 AM – 1:30 PM</td></tr>
+            <tr><td>Friday</td><td>7:45 AM – 1:30 PM</td></tr>
+            <tr><td>Saturday</td><td>8:30 AM – 1:30 PM</td></tr>
+            <tr class="closed"><td>Sunday</td><td>Closed</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="col-lg-7">
+        <div class="map-embed">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3279.5!2d-77.9441!3d34.2348!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89a9f546e1b4f123%3A0x0!2s1201+Princess+St%2C+Wilmington%2C+NC+28401!5e0!3m2!1sen!2sus!4v1"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Folks Cafe location map">
+          </iframe>
+        </div>
+        <div class="mt-3 d-flex gap-2 flex-wrap">
+          <a href="https://maps.google.com/?q=1201+Princess+St+Wilmington+NC" target="_blank"
+             class="btn btn-sm" style="background:var(--espresso);color:var(--cream);font-weight:700;letter-spacing:.05em;">
+            Open in Google Maps
+          </a>
+          <a href="https://maps.apple.com/?address=1201+Princess+St+Wilmington+NC" target="_blank"
+             class="btn btn-sm btn-outline-secondary" style="font-weight:700;letter-spacing:.05em;">
+            Open in Apple Maps
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section text-center" style="padding:4.5rem 0;">
+  <div class="container">
+    <h2>Ready for a Great Morning?</h2>
+    <p class="mt-3 mx-auto" style="max-width:480px;">
+      Join Wilmington's favorite breakfast crowd. No reservations needed — just show up hungry.
+    </p>
+    <div class="mt-4 d-flex flex-wrap justify-content-center gap-3">
+      <a href="tel:9103621448" class="btn btn-light">(910) 362-1448</a>
+      <a href="#location" class="btn btn-outline-light">Get Directions</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <div class="footer-brand">
+          <img src="images/logo.png" alt="Folks Cafe" style="height:50px;width:auto;filter:brightness(0) invert(1);opacity:.85;">
+        </div>
+        <p style="margin-top:.5rem; max-width:280px;">
+          Empanadas, breakfast &amp; brunch on Princess Street.<br>
+          Open Tuesday – Saturday.
+        </p>
+      </div>
+      <div class="col-lg-4">
+        <strong style="color:rgba(255,248,240,.8);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;">Quick Links</strong>
+        <ul class="list-unstyled mt-2" style="line-height:2.2;">
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#photos">Photos</a></li>
+          <li><a href="#location">Location &amp; Hours</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4">
+        <strong style="color:rgba(255,248,240,.8);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;">Contact</strong>
+        <ul class="list-unstyled mt-2" style="line-height:2.2;">
+          <li><a href="tel:9103621448">(910) 362-1448</a></li>
+          <li><a href="https://folkscafe.com" target="_blank">folkscafe.com</a></li>
+          <li style="color:rgba(255,248,240,.4);">1201 Princess St, Wilmington NC 28401</li>
+        </ul>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+      <p class="mb-0" style="font-size:.82rem;">
+        © 2025 Folks Cafe · 1201 Princess St, Wilmington NC 28401
+      </p>
+      <p class="mb-0" style="font-size:.78rem; color:rgba(255,248,240,.3);">
+        Website by Colin Egan
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // Highlight today's hours row
+  const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const today = days[new Date().getDay()];
+  document.querySelectorAll('.hours-table tr').forEach(row => {
+    if (row.cells[0] && row.cells[0].textContent.trim() === today) {
+      row.classList.add('today');
+    }
+  });
+</script>
+</body>
+</html>
